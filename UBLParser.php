@@ -67,7 +67,7 @@ class UBLParser
             'PayableAmountCurrency' => null,
         ],
 
-        'InvoiceLines' => []
+        'InvoiceLines' => [],
     ];
 
     protected array $item = [
@@ -361,7 +361,7 @@ class UBLParser
     public function set(string $xmlString): static
     {
         $doc = new DOMDocument();
-        $doc->loadXML($xmlString);
+        $doc->loadXML($xmlString, LIBXML_NOERROR);
 
         foreach ($doc->documentElement->childNodes as $node) {
 
@@ -389,7 +389,7 @@ class UBLParser
             } elseif ($this->isNode($node, 'cbc:InvoiceTypeCode')) {
                 $this->data['InvoiceTypeCode'] = $node->nodeValue;
 
-            } elseif ($this->isNode($node, 'cbc:Note')) {
+            } elseif ($this->isNode($node, 'cbc:Note') && ! empty($node->nodeValue)) {
                 $this->data['Notes'][] = $node->nodeValue;
 
             } elseif ($this->isNode($node, 'cbc:DocumentCurrencyCode')) {
