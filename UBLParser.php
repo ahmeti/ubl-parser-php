@@ -77,6 +77,7 @@ class UBLParser
         'LineExtensionAmount' => null,
         'LineExtensionAmountCurrency' => null,
         'AllowanceCharge' => [
+            'MultiplierFactorNumeric' => null,
             'Amount' => null,
             'AmountCurrency' => null,
             'BaseAmount' => null,
@@ -293,8 +294,10 @@ class UBLParser
             } elseif ($this->isNode($node2, 'cac:AllowanceCharge')) {
 
                 foreach ($node2->childNodes as $node3) {
+                    if ($this->isNode($node3, 'cbc:MultiplierFactorNumeric')) {
+                        $invoiceLine['AllowanceCharge']['MultiplierFactorNumeric'] = $node3->nodeValue;
 
-                    if ($this->isNode($node3, 'cbc:Amount')) {
+                    } elseif ($this->isNode($node3, 'cbc:Amount')) {
                         $invoiceLine['AllowanceCharge']['Amount'] = $node3->nodeValue;
                         $invoiceLine['AllowanceCharge']['AmountCurrency'] = $node3->getAttribute('currencyID');
 
