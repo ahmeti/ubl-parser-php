@@ -99,6 +99,10 @@ class UblParser
         ],
         'Item' => [
             'Name' => null,
+            'Description' => null,
+            'BuyersItemIdentificationId' => null,
+            'SellersItemIdentificationId' => null,
+            'ManufacturersItemIdentificationId' => null,
         ],
         'Price' => [
             'PriceAmount' => null,
@@ -345,6 +349,30 @@ class UblParser
 
                     if ($this->isNode($node3, 'cbc:Name')) {
                         $invoiceLine['Item']['Name'] = $node3->nodeValue;
+
+                    } elseif ($this->isNode($node3, 'cbc:Description')) {
+                        $invoiceLine['Item']['Description'] = $node3->nodeValue;
+
+                    } elseif ($this->isNode($node3, 'cac:BuyersItemIdentification')) {
+                        foreach ($node3->childNodes as $node4) {
+                            if ($this->isNode($node4, 'cbc:ID')) {
+                                $invoiceLine['Item']['BuyersItemIdentificationId'] = $node4->nodeValue;
+                            }
+                        }
+
+                    } elseif ($this->isNode($node3, 'cac:SellersItemIdentification')) {
+                        foreach ($node3->childNodes as $node4) {
+                            if ($this->isNode($node4, 'cbc:ID')) {
+                                $invoiceLine['Item']['SellersItemIdentificationId'] = $node4->nodeValue;
+                            }
+                        }
+
+                    } elseif ($this->isNode($node3, 'cac:ManufacturersItemIdentification')) {
+                        foreach ($node3->childNodes as $node4) {
+                            if ($this->isNode($node4, 'cbc:ID')) {
+                                $invoiceLine['Item']['ManufacturersItemIdentificationId'] = $node4->nodeValue;
+                            }
+                        }
                     }
                 }
 
