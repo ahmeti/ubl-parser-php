@@ -1,8 +1,10 @@
 <?php
 
+namespace Ahmeti\UblParser;
+
 use DOMDocument;
 
-class UBLParser
+class UblParser
 {
     protected array $data = [
         'UBLVersionID' => null,

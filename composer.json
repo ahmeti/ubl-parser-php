@@ -1,0 +1,25 @@
+{
+    "name": "ahmeti/ubl-parser",
+    "description": "UBL (Universal Business Language) Parser for PHP",
+    "keywords": ["ubl", "universal", "business", "language", "parser"],
+    "homepage": "https://github.com/ahmeti/ubl-parser-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmet Imamoglu",
+            "email": "ahmet@ahmeti.com.tr",
+            "homepage": "https://ahmeti.com.tr"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Ahmeti\\UblParser\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
